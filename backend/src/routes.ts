@@ -1,6 +1,6 @@
 import { Router , Request, Response, NextFunction} from 'express';
-import { createInscricao, getInscricoes, getInscricoesPorCongregacoes } from '../src/Controller/InscricaoController';
-import { getId } from './Controller/PaymentController';
+import { createInscricao, getInscricoes, getInscricoesPorCongregacoes } from './Controller/InscricaoController';
+//import { getId } from './Controller/PaymentController';
 import * as express from 'express';
 
 const app =  express();
@@ -26,6 +26,6 @@ routes.get('/inscricoes/:congregacao', getInscricoesPorCongregacoes)
 
 routes.post('/inscricao', createInscricao);
 
-routes.get('/payments/globalid', getId);
+//routes.get('/payments/globalid', getId);
 
 export default routes;
