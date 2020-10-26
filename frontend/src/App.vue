@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    <Nav />
     <router-view></router-view>
   </div>
 </template>
 <script>
-import Nav from './components/Nav';
 export default {
-  components: {
-    Nav,
+  
+data() {
+  return {
+    
+  }
+},
+  mounted () {
+    if(localStorage.getItem('auth') == 'true'){
+      this.$router.push('/relatorios');
+    }else{
+      this.$router.push('/login');
+    }
   },
 }
 </script>
@@ -16,4 +24,5 @@ export default {
 body{
   background: #eb5234;
 }
+
 </style>

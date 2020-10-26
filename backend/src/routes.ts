@@ -1,7 +1,8 @@
 import { Router , Request, Response, NextFunction} from 'express';
-import { createInscricao, getInscricoes, getInscricoesPorCongregacoes } from './Controller/InscricaoController';
+import { createInscricao, getInscricoes, getInscricoesPorCongregacoes, getInscricoesPorCargo,getInscricoesPorId } from './controllers/InscricaoController';
 //import { getId } from './Controller/PaymentController';
-import * as express from 'express';
+import express from 'express';
+import { authUser } from './controllers/UsuarioController';
 
 const app =  express();
 const routes = Router();
@@ -22,9 +23,16 @@ routes.use((request:Request,response:Response, next:NextFunction) => {
 }*/
 routes.get('/inscricao', getInscricoes);
 
-routes.get('/inscricoes/:congregacao', getInscricoesPorCongregacoes)
+routes.get('/inscricoes/:congregacao', getInscricoesPorCongregacoes);
+
+routes.get('/inscricoes/cargo/:cargo', getInscricoesPorCargo);
+
+routes.get('/inscricoes/id/:id', getInscricoesPorId);
 
 routes.post('/inscricao', createInscricao);
+
+routes.post('/authUser', authUser);
+
 
 //routes.get('/payments/globalid', getId);
 

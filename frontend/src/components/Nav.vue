@@ -16,34 +16,71 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="#">
-              <i class="fas fa-chart-line"></i>Dashboard</a>
-            <a class="nav-item nav-link" href="#">
+            <a class="nav-item nav-link" @click="goToCadastro()">
               <i class="fas fa-user-plus"></i>
-              Cadastro</a>
-            <a class="nav-item nav-link" href="#">
-              <i class="fas fa-file-invoice"></i>Relatórios</a>
-            <a class="nav-item nav-link " href="#">
-              <i class="fas fa-check-square"></i>Presença</a>
+              Cadastro</a
+            >
+            <a class="nav-item nav-link" @click="goToRelatorios()">
+              <i class="fas fa-file-invoice"></i>Relatórios</a
+            >
+            <a class="nav-item nav-link" @click="goToPresenca()">
+              <i class="fas fa-check-square"></i>Presença</a
+            >
+            <a class="nav-item nav-link" @click="goToDashboard()">
+              <i class="fas fa-qrcode"></i>Leitor de Código</a
+            >
           </div>
         </div>
-        <a class="usuario my-2 my-sm-0">Andrey</a>
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-sign-out-alt"></i>Sair</button>
+        <a class="usuario my-2 my-sm-0">{{usuario}}</a>
+        <button class="btn btn-secondary my-2 my-sm-0" @click="sair()">
+          <i class="fas fa-sign-out-alt"></i>Sair
+        </button>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    goToDashboard() {
+      this.$router.push("/leitor-codigo");
+    },
+    goToRelatorios() {
+      this.$router.push("/relatorios");
+    },
+    goToPresenca() {
+      this.$router.push("/presenca");
+    },
+    goToCadastro() {
+      this.$router.push("/cadastro");
+    },
+    sair(){
+      localStorage.clear();
+      window.location.reload();
+    }
+  },
+  data() {
+    return {
+      usuario: localStorage.getItem('usuario'),
+    };
+  },
+  mounted() {},
+};
 </script>
 
 <style scoped>
-.usuario{
+.usuario {
   font-weight: 600;
   margin-right: 15px;
 }
-i{
+i {
   margin-right: 8px;
+}
+.nav-item {
+  cursor: pointer;
+}
+nav {
+  z-index: 999;
 }
 </style>
