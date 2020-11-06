@@ -1,5 +1,8 @@
 import { Router , Request, Response, NextFunction} from 'express';
-import { createInscricao, getInscricoes, getInscricoesPorCongregacoes, getInscricoesPorCargo,getInscricoesPorId } from './controllers/InscricaoController';
+import { createInscricao, getInscricoes, getInscricoesPorCongregacoes, 
+         getInscricoesPorCargo, getInscricoesPorId, getInscricoesPorNome, 
+         deleteInscricao, getInscricoesEtiquetas, confirmaIncricao ,getInscricoesPresentes
+} from './controllers/InscricaoController';
 //import { getId } from './Controller/PaymentController';
 import express from 'express';
 import { authUser } from './controllers/UsuarioController';
@@ -23,16 +26,25 @@ routes.use((request:Request,response:Response, next:NextFunction) => {
 }*/
 routes.get('/inscricao', getInscricoes);
 
+routes.get('/inscricao/presentes', getInscricoesPresentes);
+
+routes.get('/inscricao/etiquetas', getInscricoesEtiquetas);
+
 routes.get('/inscricoes/:congregacao', getInscricoesPorCongregacoes);
 
 routes.get('/inscricoes/cargo/:cargo', getInscricoesPorCargo);
+
+routes.get('/inscricoes/nome/:nome', getInscricoesPorNome);
 
 routes.get('/inscricoes/id/:id', getInscricoesPorId);
 
 routes.post('/inscricao', createInscricao);
 
+routes.post('/confirmar/:id', confirmaIncricao)
+
 routes.post('/authUser', authUser);
 
+routes.delete('/inscricoes/id/:id', deleteInscricao);
 
 //routes.get('/payments/globalid', getId);
 

@@ -22,8 +22,7 @@ export const authUser = async (request:Request, response:Response) => {
             }            
         }else{
             return response.status(401).send({Message:"Usuário ou senha incorretos!" });
-        }
-                 
+        }                 
     }else{
         return response.status(401).send({Message:"Usuário ou senha são Obrigatórios!"});        
     }

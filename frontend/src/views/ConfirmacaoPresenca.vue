@@ -23,7 +23,7 @@
           type="button"
           class="btn btn-laranja"
           v-if="isLoading == false"
-          @click="SalvarForm()"
+          @click="Confirmar()"
         >
           Confirmar
         </button>
@@ -65,7 +65,7 @@ export default {
         congregacao: "",
       },
     };
-  },
+    },    
   computed: {
     ...mapGetters(["GET_BARCODE"]),
   },
@@ -80,6 +80,16 @@ export default {
       this.loading = false;
     });
   },
+  methods: {
+      Confirmar() {
+        this.isLoading = true;
+        Inscricao.confirmarPresenca(this.GET_BARCODE).then(()=>{
+          this.isLoading = false;
+          this.GET_BARCODE = '';
+          this.$router.push('/leitor-codigo');
+        })
+      }
+    },
 };
 </script>
 

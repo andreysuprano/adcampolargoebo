@@ -136,6 +136,7 @@ export default {
         email: "",
         congregacao: "",
         cargo: "",
+        statusPagamento:'pendente'
       },
       inscricaoEmBranco: {
         nome: "",
@@ -184,6 +185,10 @@ export default {
   mounted() {
     if (localStorage.getItem("auth") != "true") {
       this.$router.push("/login");
+    }else{
+      if(localStorage.getItem("usuario") == 'Recepcao'){
+        this.$router.push("/leitor-codigo");
+      }
     }
   },
 };
